@@ -1,0 +1,72 @@
+cities:
+  - slug: sao-paulo
+    name: Sao Paulo
+    uf: SP
+    region: Sudeste
+    latitude: -23.5505
+    longitude: -46.6333
+    timezone: America/Sao_Paulo
+  - slug: rio-de-janeiro
+    name: Rio de Janeiro
+    uf: RJ
+    region: Sudeste
+    latitude: -22.9068
+    longitude: -43.1729
+    timezone: America/Sao_Paulo
+  - slug: belo-horizonte
+    name: Belo Horizonte
+    uf: MG
+    region: Sudeste
+    latitude: -19.9167
+    longitude: -43.9345
+    timezone: America/Sao_Paulo
+  - slug: curitiba
+    name: Curitiba
+    uf: PR
+    region: Sul
+    latitude: -25.4284
+    longitude: -49.2733
+    timezone: America/Sao_Paulo
+  - slug: porto-alegre
+    name: Porto Alegre
+    uf: RS
+    region: Sul
+    latitude: -30.0346
+    longitude: -51.2177
+    timezone: America/Sao_Paulo
+  - slug: brasilia
+    name: Brasilia
+    uf: DF
+    region: Centro-Oeste
+    latitude: -15.7939
+    longitude: -47.8828
+    timezone: America/Sao_Paulo
+  - slug: salvador
+    name: Salvador
+    uf: BA
+    region: Nordeste
+    latitude: -12.9777
+    longitude: -38.5016
+    timezone: America/Bahia
+  - slug: recife
+    name: Recife
+    uf: PE
+    region: Nordeste
+    latitude: -8.0476
+    longitude: -34.8770
+    timezone: America/Recife
+  - slug: fortaleza
+    name: Fortaleza
+    uf: CE
+    region: Nordeste
+    latitude: -3.7319
+    longitude: -38.5267
+    timezone: America/Fortaleza
+  - slug: manaus
+    name: Manaus
+    uf: AM
+    region: Norte
+    latitude: -3.1190
+    longitude: -60.0217
+    timezone: America/Manaus
+
