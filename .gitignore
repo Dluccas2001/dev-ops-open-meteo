@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment
+.env
+.env.*
+!.env.example
+.envrc
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa
+id_rsa.pub
+credentials.json
+service-account*.json
+*secret*.json
+*secrets*.json
+secrets/
+
+# Data and generated artifacts
+data/raw/
+data/processed/
+models/
+mlruns/
+mlartifacts/
+*.parquet
+*.joblib
+*.pkl
+*.pickle
+*.onnx
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.sql
+
+# Local evidence exports and large media
+docs/evidences/*.png
+docs/evidences/*.jpg
+docs/evidences/*.jpeg
+docs/evidences/*.gif
+docs/evidences/*.mp4
+docs/evidences/*.mov
+docs/evidences/*.zip
+
+# Keep sample/versioned placeholders
+!data/samples/
+!data/samples/.gitkeep
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Tooling
+.python-version
+.ipynb_checkpoints/
+
+# Local project checkpoint
+Contexto.md
