@@ -1,4 +1,5 @@
 from functools import lru_cache
+from urllib.parse import quote_plus
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -18,9 +19,25 @@ class Settings(BaseSettings):
     data_processed_dir: str = "data/processed"
     model_dir: str = "models"
 
-    database_url: str = "postgresql://postgres:postgres@localhost:5432/weather"
+    database_url: str | None = None
+    db_host: str = "localhost"
+    db_port: int = 5432
+    db_name: str = "open-meteo"
+    db_user: str = "postgres"
+    db_password: str = "postgres"
+
     mlflow_tracking_uri: str = "http://localhost:5000"
     mlflow_experiment_name: str = "weather-rain-prediction"
+
+    @property
+    def resolved_database_url(self) -> str:
+        if self.database_url:
+            return self.database_url
+
+        user = quote_plus(self.db_user)
+        password = quote_plus(self.db_password)
+        database = quote_plus(self.db_name)
+        return f"postgresql://{user}:{password}@{self.db_host}:{self.db_port}/{database}"
 
 
 @lru_cache

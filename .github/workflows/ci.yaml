@@ -37,8 +37,10 @@ jobs:
       - name: Pytest
         run: python -m pytest
 
-      - name: Data quality placeholder
-        run: python -m src.quality.checks
+      - name: Data quality checks
+        run: |
+          DATA_RAW_DIR=data/samples DATA_PROCESSED_DIR=data/processed python -m src.jobs.transform
+          DATA_PROCESSED_DIR=data/processed python -m src.quality.checks
 
       - name: Build image
         run: docker build -f ContainerFile -t weather-mlops-api:ci .
