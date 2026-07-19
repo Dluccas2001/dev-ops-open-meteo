@@ -322,6 +322,54 @@ models/model_info.json
 Se o servidor MLflow configurado nao estiver disponivel, o treino registra o run
 em `file:mlruns` para manter a execucao local funcionando.
 
+## Kubernetes Com Kind
+
+Os manifests ficam em `k8s/` e aplicam:
+
+- namespace `weather-mlops`;
+- ConfigMap da aplicacao;
+- Secret com valores exemplo;
+- Deployment da API;
+- Service da API;
+- Job de ingestao;
+- Kustomization.
+
+Validar manifests:
+
+```bash
+kubectl kustomize k8s
+```
+
+Criar cluster e carregar imagem:
+
+```bash
+kind create cluster --name weather-mlops
+docker build -f ContainerFile -t weather-mlops-api:local .
+kind load docker-image weather-mlops-api:local --name weather-mlops
+```
+
+Aplicar:
+
+```bash
+kubectl apply -k k8s
+kubectl get all -n weather-mlops
+```
+
+Acessar API:
+
+```bash
+kubectl port-forward -n weather-mlops service/weather-api 8000:8000
+curl http://localhost:8000/health
+```
+
+Rollback:
+
+```bash
+kubectl rollout history deployment/weather-api -n weather-mlops
+kubectl rollout undo deployment/weather-api -n weather-mlops
+kubectl rollout status deployment/weather-api -n weather-mlops
+```
+
 ## Decisoes Tecnicas
 
 As decisoes de arquitetura ficam registradas como ADRs em `docs/adr/`.
@@ -336,6 +384,7 @@ ADRs atuais:
 - `0006-fixtures-versionadas-para-transformacao-e-qualidade.md`
 - `0007-database-dedicada-open-meteo.md`
 - `0008-modelo-local-com-mlflow-e-serving-fastapi.md`
+- `0009-kind-para-deploy-local-da-api.md`
 
 ## Proximas Ferramentas A Instalar
 

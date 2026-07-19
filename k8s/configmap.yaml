@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: weather-api-config
+  namespace: weather-mlops
+  labels:
+    app.kubernetes.io/name: weather-api
+    app.kubernetes.io/part-of: weather-mlops
+data:
+  ENV: "kind"
+  APP_NAME: "weather-mlops-pipeline"
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  OPEN_METEO_BASE_URL: "https://api.open-meteo.com/v1/forecast"
+  FORECAST_DAYS: "7"
+  DATA_RAW_DIR: "/app/data/raw"
+  DATA_PROCESSED_DIR: "/app/data/processed"
+  MODEL_DIR: "/app/models"
+  MLFLOW_TRACKING_URI: "file:/app/mlruns"
+  MLFLOW_EXPERIMENT_NAME: "weather-rain-prediction"

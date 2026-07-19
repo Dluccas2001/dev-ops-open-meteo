@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: weather-mlops
+  labels:
+    app.kubernetes.io/name: weather-mlops-pipeline
+    app.kubernetes.io/part-of: weather-mlops
