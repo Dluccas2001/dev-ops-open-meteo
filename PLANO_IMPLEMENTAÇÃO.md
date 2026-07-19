@@ -13,7 +13,7 @@ O projeto devera demonstrar:
 
 - Ingestao de dados climaticos da Open-Meteo.
 - Persistencia em camada raw.
-- Transformacao, limpeza, tipagem e agregacoes.
+- Transformacao, limpeza, tipagem e agregacoes
 - Validacao de qualidade dos dados.
 - Carga em PostgreSQL.
 - API de consulta.
