@@ -63,3 +63,52 @@ def test_weather_summary_endpoint(monkeypatch) -> None:
 
     assert response.status_code == 200
     assert response.json()["cities"] == 1
+
+
+def test_model_info_endpoint(monkeypatch) -> None:
+    monkeypatch.setattr(
+        main,
+        "load_model_info",
+        lambda: {"model_version": "local", "metrics": {"accuracy": 1.0}},
+    )
+
+    response = client.get("/model/info")
+
+    assert response.status_code == 200
+    assert response.json()["model_version"] == "local"
+
+
+def test_predict_rain_endpoint(monkeypatch) -> None:
+    monkeypatch.setattr(
+        main,
+        "predict_rain",
+        lambda payload: {
+            "city": payload["city"],
+            "will_rain_tomorrow": False,
+            "probability": 0.2,
+            "model_version": "local",
+        },
+    )
+
+    response = client.post(
+        "/predict/rain",
+        json={
+            "city": "sao-paulo",
+            "temp_mean": 22.0,
+            "temp_min": 18.0,
+            "temp_max": 26.0,
+            "humidity_mean": 75.0,
+            "wind_mean": 9.0,
+            "rain_sum": 0.0,
+            "month": 7,
+            "day_of_week": 0,
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "city": "sao-paulo",
+        "will_rain_tomorrow": False,
+        "probability": 0.2,
+        "model_version": "local",
+    }

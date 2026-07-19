@@ -4,6 +4,7 @@ from datetime import UTC, datetime
 from fastapi import FastAPI, HTTPException
 from sqlalchemy.exc import SQLAlchemyError
 
+from src.api.schemas import RainPredictionRequest, RainPredictionResponse
 from src.config import settings
 from src.data.weather_repository import (
     fetch_cities,
@@ -11,6 +12,7 @@ from src.data.weather_repository import (
     fetch_latest_weather,
     fetch_weather_summary,
 )
+from src.ml.predict import load_model_info, predict_rain
 
 START_TIME = time.monotonic()
 
@@ -50,6 +52,13 @@ def database_unavailable_error() -> HTTPException:
     )
 
 
+def model_unavailable_error() -> HTTPException:
+    return HTTPException(
+        status_code=503,
+        detail="Rain prediction model is unavailable. Run train job first.",
+    )
+
+
 @app.get("/cities", tags=["weather"])
 def cities() -> list[dict]:
     try:
@@ -84,3 +93,19 @@ def weather_summary() -> dict:
         return fetch_weather_summary()
     except SQLAlchemyError as exc:
         raise database_unavailable_error() from exc
+
+
+@app.get("/model/info", tags=["ml"])
+def model_info() -> dict:
+    try:
+        return load_model_info()
+    except FileNotFoundError as exc:
+        raise model_unavailable_error() from exc
+
+
+@app.post("/predict/rain", response_model=RainPredictionResponse, tags=["ml"])
+def predict_rain_endpoint(payload: RainPredictionRequest) -> dict:
+    try:
+        return predict_rain(payload.model_dump())
+    except FileNotFoundError as exc:
+        raise model_unavailable_error() from exc

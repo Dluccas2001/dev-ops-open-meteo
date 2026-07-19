@@ -177,6 +177,7 @@ python -m src.jobs.ingest
 python -m src.jobs.transform
 python -m src.quality.checks
 python -m src.jobs.load
+python -m src.ml.train
 ```
 
 Com Make instalado, os equivalentes serao:
@@ -190,6 +191,7 @@ make ingest
 make transform
 make quality
 make load
+make train
 ```
 
 Enquanto `make` nao estiver disponivel no Windows, use os comandos `python -m ...`.
@@ -282,6 +284,43 @@ Endpoints atuais:
 - `GET /weather/latest?city=sao-paulo`
 - `GET /weather/daily?city=sao-paulo&limit=30`
 - `GET /weather/summary`
+- `GET /model/info`
+- `POST /predict/rain`
+
+Exemplo de payload para predicao:
+
+```json
+{
+  "city": "sao-paulo",
+  "temp_mean": 22.0,
+  "temp_min": 18.0,
+  "temp_max": 26.0,
+  "humidity_mean": 75.0,
+  "wind_mean": 9.0,
+  "rain_sum": 0.0,
+  "month": 7,
+  "day_of_week": 0
+}
+```
+
+## MLOps
+
+O treino cria o target `will_rain_tomorrow` a partir da chuva do dia seguinte,
+treina um modelo scikit-learn e registra metricas no MLflow:
+
+```bash
+python -m src.ml.train
+```
+
+Artefatos locais:
+
+```text
+models/rain_model.joblib
+models/model_info.json
+```
+
+Se o servidor MLflow configurado nao estiver disponivel, o treino registra o run
+em `file:mlruns` para manter a execucao local funcionando.
 
 ## Decisoes Tecnicas
 
@@ -296,6 +335,7 @@ ADRs atuais:
 - `0005-job-sincrono-para-ingestao-open-meteo.md`
 - `0006-fixtures-versionadas-para-transformacao-e-qualidade.md`
 - `0007-database-dedicada-open-meteo.md`
+- `0008-modelo-local-com-mlflow-e-serving-fastapi.md`
 
 ## Proximas Ferramentas A Instalar
 
