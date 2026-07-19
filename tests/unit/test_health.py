@@ -21,4 +21,3 @@ def test_metadata_endpoint() -> None:
     assert response.status_code == 200
     payload = response.json()
     assert payload["data_source"] == "Open-Meteo"
-

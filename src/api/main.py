@@ -34,4 +34,3 @@ def metadata() -> dict:
         "forecast_days": settings.forecast_days,
         "mlflow_tracking_uri": settings.mlflow_tracking_uri,
     }
-
