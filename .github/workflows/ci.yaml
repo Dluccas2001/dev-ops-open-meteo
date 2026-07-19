@@ -44,7 +44,7 @@ jobs:
         run: docker build -f ContainerFile -t weather-mlops-api:ci .
 
       - name: Trivy filesystem scan
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -58,4 +58,3 @@ jobs:
           else
             echo "Kubernetes manifests will be added in a later phase."
           fi
-
