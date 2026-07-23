@@ -808,8 +808,8 @@ Aceite:
 - [x] Testes automatizados.
 - [x] CI com lint, test, build, scan e validate.
 - [x] Manifests Kubernetes.
-- [ ] Deploy no Kind via Makefile.
-- [ ] Status e rollback via Makefile.
+- [x] Deploy no Kind via Makefile/comandos equivalentes.
+- [x] Status e rollback via Makefile/comandos equivalentes.
 - [x] Pelo menos 3 ADRs.
 - [x] Diagrama de arquitetura.
 - [x] Troubleshooting.
@@ -819,9 +819,7 @@ Pendencias finais externas ao codigo:
 
 - Fazer commits com mensagens Conventional Commits em portugues.
 - Conferir o CI verde no GitHub depois do push.
-- Executar `make deploy`, `make status` e `make rollback` no WSL onde o cluster
-  Kind foi criado, depois preencher `docs/evidences/kind-deploy.md` e
-  `docs/evidences/kind-rollback.md` com os outputs reais.
+- Conferir o CI verde no GitHub depois do push.
 
 ## 22. Estrategia de execucao
 

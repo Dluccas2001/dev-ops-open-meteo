@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY src/ ./src/
 COPY config/ ./config/
+COPY data/samples/ ./data/samples/
 COPY pyproject.toml README.md ./
 
 RUN mkdir -p data/raw data/processed models && chown -R appuser:appgroup /app
@@ -22,4 +23,3 @@ USER appuser
 EXPOSE 8000
 
 CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
-

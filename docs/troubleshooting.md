@@ -103,6 +103,18 @@ ou, no Compose:
 docker compose exec -T api python -m src.ml.train
 ```
 
+No Kind, gere os datasets e o modelo dentro do pod:
+
+```bash
+kubectl exec -n weather-mlops deployment/weather-api -- sh -c "DATA_RAW_DIR=/app/data/samples DATA_PROCESSED_DIR=/app/data/processed python -m src.jobs.transform && DATA_PROCESSED_DIR=/app/data/processed python -m src.quality.checks && DATA_PROCESSED_DIR=/app/data/processed MLFLOW_TRACKING_URI=file:/app/mlruns python -m src.ml.train"
+```
+
+Depois teste novamente:
+
+```bash
+curl http://localhost:8001/model/info
+```
+
 ## Data quality falha
 
 Sintoma:

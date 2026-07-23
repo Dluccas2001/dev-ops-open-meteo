@@ -252,6 +252,21 @@ kubectl port-forward -n weather-mlops service/weather-api 8000:8000
 curl http://localhost:8000/health
 ```
 
+Se a porta `8000` ja estiver ocupada localmente:
+
+```bash
+kubectl port-forward -n weather-mlops service/weather-api 8001:8000
+curl http://localhost:8001/health
+```
+
+Gerar o modelo dentro do pod para validar `/model/info` e `/predict/rain` no
+Kind:
+
+```bash
+kubectl exec -n weather-mlops deployment/weather-api -- sh -c "DATA_RAW_DIR=/app/data/samples DATA_PROCESSED_DIR=/app/data/processed python -m src.jobs.transform && DATA_PROCESSED_DIR=/app/data/processed python -m src.quality.checks && DATA_PROCESSED_DIR=/app/data/processed MLFLOW_TRACKING_URI=file:/app/mlruns python -m src.ml.train"
+curl http://localhost:8001/model/info
+```
+
 Rollback:
 
 ```bash
