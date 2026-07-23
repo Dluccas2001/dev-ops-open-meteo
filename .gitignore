@@ -80,3 +80,12 @@ logs/
 
 # Local project checkpoint
 Contexto.md
+Sistema de Avaliação da Disciplina.pdf
+
+# Kubernetes local overrides
+k8s/*local*.yaml
+k8s/*secret*.local.yaml
+
+# Local command outputs
+*.out
+*.err

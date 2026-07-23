@@ -790,30 +790,38 @@ Aceite:
 
 ## 21. Criterios de aceite final
 
-- [ ] Repositorio organizado.
-- [ ] README completo.
-- [ ] LICENSE presente.
-- [ ] Badges no README.
+- [x] Repositorio organizado.
+- [x] README completo.
+- [x] LICENSE presente.
+- [x] Badges no README.
 - [ ] Commits seguindo Conventional Commits.
-- [ ] Compose funcional.
-- [ ] Pipeline end-to-end funcional.
-- [ ] Ingestao Open-Meteo para raw.
-- [ ] Transformacao para processed.
-- [ ] Data quality configurado.
-- [ ] PostgreSQL carregado.
-- [ ] API de consulta funcional.
-- [ ] Treino ML funcional.
-- [ ] MLflow com experimento registrado.
-- [ ] Serving de modelo funcional.
-- [ ] Testes automatizados.
-- [ ] CI com lint, test, build, scan e validate.
-- [ ] Manifests Kubernetes.
+- [x] Compose funcional.
+- [x] Pipeline end-to-end funcional.
+- [x] Ingestao Open-Meteo para raw.
+- [x] Transformacao para processed.
+- [x] Data quality configurado.
+- [x] PostgreSQL carregado.
+- [x] API de consulta funcional.
+- [x] Treino ML funcional.
+- [x] MLflow com experimento registrado.
+- [x] Serving de modelo funcional.
+- [x] Testes automatizados.
+- [x] CI com lint, test, build, scan e validate.
+- [x] Manifests Kubernetes.
 - [ ] Deploy no Kind via Makefile.
 - [ ] Status e rollback via Makefile.
-- [ ] Pelo menos 3 ADRs.
-- [ ] Diagrama de arquitetura.
-- [ ] Troubleshooting.
-- [ ] Evidencias de MLflow e operacao.
+- [x] Pelo menos 3 ADRs.
+- [x] Diagrama de arquitetura.
+- [x] Troubleshooting.
+- [x] Evidencias de MLflow e operacao.
+
+Pendencias finais externas ao codigo:
+
+- Fazer commits com mensagens Conventional Commits em portugues.
+- Conferir o CI verde no GitHub depois do push.
+- Executar `make deploy`, `make status` e `make rollback` no WSL onde o cluster
+  Kind foi criado, depois preencher `docs/evidences/kind-deploy.md` e
+  `docs/evidences/kind-rollback.md` com os outputs reais.
 
 ## 22. Estrategia de execucao
 
@@ -822,7 +830,7 @@ A prioridade e entregar o nucleo funcionando antes de sofisticar:
 1. Pipeline local completo.
 2. Testes e data quality.
 3. API e ML.
-4. CI."
+4. CI.
 5. Kind e rollback.
 6. Documentacao e evidencias.
 7. Bonus apenas se houver tempo.
